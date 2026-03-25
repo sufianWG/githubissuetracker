@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logn | Github Issue Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-[#F8FAFC]">
+    <section class="min-h-screen flex items-center justify-center">
+        <div class="login-form w-[520px] bg-white p-8 space-y-4 shadow-xl my-20 rounded-xl" id="login-form">
+            <div class="login-form-header text-center">
+                <img src="./assets/github-logo.png" alt="" class="w-[100px] mx-auto">
+                <h1 class="text-2xl font-semibold text-[#1F2937]">GitHub Issue Tracker</h1>
+                <p class="text-[#64748B]">Sign In to manage your issues</p>
+            </div>
+            <fieldset class="fieldset p-4 mx-auto">
+
+                <label class="label text-[#1F2937] font-bold">Username</label>
+                <input class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="email" class="input" placeholder="Enter Username" />
+                <span class="text-[#4A00FF]">Default: admin</span>
+
+                <label class="label text-[#1F2937] font-bold">Password</label>
+                <input class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="password" class="input" placeholder="Enter Password" />
+                <span class="text-[#4A00FF]">Default: admin123</span>
+                
+                <button class="btn btn-primary mt-4 rounded-lg font-semibold">Sign In</button>
+                <div class="or-break flex items-center my-6 justify-center">
+                    <hr class="border-gray-300 grow">
+                    <span class="mx-4 text-[#1F2937] font-medium text-xl">OR</span>
+                    <hr class="border-gray-300 grow">
+                </div>
+                <div class="demo-credentials text-center">
+                    <p class="mb-1 text[#64748B] mx-auto">Demo Credentials:</p>
+                    <div class="bg-[#F8FAFC] w-full mx-auto rounded-lg">
+                        <div class="flex flex-col justify-center items-center">
+                            <p class="p-6 text-left"><span class="font-bold">Username:</span> admin <br><span class="font-bold">Password:</span> admin123</p>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issues | Github Issue Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="navbar bg-base-100 shadow-sm p-4 sticky">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl">
+                    <img src="./assets/github-logo.png" alt="" class="w-9"> <span class="text-2xl font-semibold">GitHub Issues Tracker</span>
+                </a>
+            </div>
+            <div class="flex gap-2">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>
+                    </span>
+                    <input type="text" placeholder="Search Issues..." class="input input-bordered w-24 pl-10 pr-4 focus:border-[#4A00FF] focus:outline-none focus:ring-0 md:w-auto" />
+                </div>
+                
+                <div class="dropdown dropdown-end">
+                    <button class="btn btn-primary">+ New Issues</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>
