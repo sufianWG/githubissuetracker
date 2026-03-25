@@ -24,14 +24,14 @@
             <fieldset class="fieldset p-4 mx-auto">
 
                 <label class="label text-[#1F2937] font-bold">Username</label>
-                <input class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="email" class="input" placeholder="Enter Username" />
+                <input id="login-user-name" class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="email" class="input" placeholder="Enter Username" />
                 <span class="text-[#4A00FF]">Default: admin</span>
 
                 <label class="label text-[#1F2937] font-bold">Password</label>
-                <input class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="password" class="input" placeholder="Enter Password" />
+                <input id="login-password" class="w-full p-4 rounded-lg border-[#E4E4E7] focus:border-[#4A00FF] focus:outline-none focus:ring-0" type="password" class="input" placeholder="Enter Password" />
                 <span class="text-[#4A00FF]">Default: admin123</span>
                 
-                <button class="btn btn-primary mt-4 rounded-lg font-semibold">Sign In</button>
+                <button class="btn btn-primary mt-4 rounded-lg font-semibold" id="login-id">Sign In</button>
                 <div class="or-break flex items-center my-6 justify-center">
                     <hr class="border-gray-300 grow">
                     <span class="mx-4 text-[#1F2937] font-medium text-xl">OR</span>
@@ -48,6 +48,7 @@
             </fieldset>
         </div>
     </section>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
