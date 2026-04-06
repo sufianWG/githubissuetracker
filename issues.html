@@ -37,7 +37,7 @@
             </div>
         </div>
     </nav>
-    <main class="my-15 max-w-9/12 mx-auto">
+    <main class="my-15 max-w-9/12 mx-auto shadow">
         <section class="toogle-bar bg-white p-6 rounded-lg shadow">
             <div class="toogle-bar-container flex gap-2">
                 <button class="all-btn w-[120px] p-3 bg-[#4A00FF] text-white text-base text-center font-semibold rounded-lg cursor-pointer">All</button>
@@ -68,8 +68,37 @@
                 </div>
             </div>
         </section>
-    </main>
+        <section id="issues-card-container" class="">
+            <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
+                <div class="status-priority p-4 flex justify-between">
+                    <div class="open-status">
+                        <img src="./assets/Open-Status.png" alt="">
+                    </div>
+                    <div class="closed-status hidden">
+                        <img src="./assets/Closed- Status .png" alt="">
+                    </div>
+                    
+                    <span id="priority-status" class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
+                </div>
+                <div class="title-desc p-4">
+                    <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on mobile devices</h2>
+                    <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse properly on mobile devices...</p>
+                </div>
+                <div class="labels p-4">
+                    <span id="issue-label-bug" class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i class="fa-solid fa-bug"></i> Bug</span>
+                    <span id="issue-label-help" class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i class="fa-solid fa-life-ring"></i> Help Wanted</span>
+                </div>
+                <div class="author-info-box border-t border-t-[#E4E4E7]">
+                    <div class="autho-info p-4">
+                        <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span id="author-name">john_doe</span></p>
+                        <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+    </main>
+ <script src="./scripts/issues.js"></script>
 </body>
 
 </html>
