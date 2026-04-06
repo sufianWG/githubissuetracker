@@ -19,86 +19,215 @@
     <nav>
         <div class="navbar bg-base-100 shadow-sm p-4 sticky">
             <div class="flex-0.8 md:flex-1">
-                <a href="issues.html" class="btn btn-ghost text-xl pl-2 pr-2 border-none hover:bg-white hover:border-none hover:shadow-none md:pl-4 md:pr-4">
-                    <img src="./assets/github-logo.png" alt="" class="w-9"> <span class="text-2xl font-semibold hidden md:block">GitHub Issues Tracker</span>
+                <a href="issues.html"
+                    class="btn btn-ghost text-xl pl-2 pr-2 border-none hover:bg-white hover:border-none hover:shadow-none md:pl-4 md:pr-4">
+                    <img src="./assets/github-logo.png" alt="" class="w-9"> <span
+                        class="text-2xl font-semibold hidden md:block">GitHub Issues Tracker</span>
                 </a>
             </div>
             <div class="flex gap-2">
                 <div class="relative">
                     <span class="absolute inset-y-0 left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
                     </span>
-                    <input type="text" placeholder="Search Issues..." class="input input-bordered pl-10 pr-4 focus:border-[#4A00FF] focus:outline-none focus:ring-0 w-[150px] md:w-auto" />
+                    <input type="text" placeholder="Search Issues..."
+                        class="input input-bordered pl-10 pr-4 focus:border-[#4A00FF] focus:outline-none focus:ring-0 w-[150px] md:w-auto" />
                 </div>
-                
+
                 <div class="dropdown dropdown-end">
-                    <button class="btn btn-primary break-words lg:break-normal"><i class="fa-solid fa-plus"></i> New Issue</button>
+                    <button class="btn btn-primary break-words lg:break-normal"><i class="fa-solid fa-plus"></i> New
+                        Issue</button>
                 </div>
             </div>
         </div>
     </nav>
-    <main class="my-15 max-w-9/12 mx-auto shadow">
+    <main class="my-15 max-w-9/12 mx-auto">
         <section class="toogle-bar bg-white p-6 rounded-lg shadow">
             <div class="toogle-bar-container flex gap-2">
-                <button class="all-btn w-[120px] p-3 bg-[#4A00FF] text-white text-base text-center font-semibold rounded-lg cursor-pointer">All</button>
-                <button class="open-btn w-[120px] p-3 bg-white text-[#64748B] outline-1 outline-[#E4E4E7] text-base text-center font-semibold rounded-lg cursor-pointer">Open </button>
-                <button class="closed-btn w-[120px] p-3 bg-white text-[#64748B] outline-1 outline-[#E4E4E7] text-base text-center font-semibold rounded-lg cursor-pointer">Closed</button>
+                <button
+                    class="all-btn w-[120px] p-3 bg-[#4A00FF] text-white text-base text-center font-semibold rounded-lg cursor-pointer">All</button>
+                <button
+                    class="open-btn w-[120px] p-3 bg-white text-[#64748B] outline-1 outline-[#E4E4E7] text-base text-center font-semibold rounded-lg cursor-pointer">Open
+                </button>
+                <button
+                    class="closed-btn w-[120px] p-3 bg-white text-[#64748B] outline-1 outline-[#E4E4E7] text-base text-center font-semibold rounded-lg cursor-pointer">Closed</button>
             </div>
         </section>
-        <section class="issues-bar bg-white p-6 rounded-lg shadow my-4">
-            <div class="issues-bar-container flex gap-2 justify-between">
-                <div class="start items-center flex">
-                    <div class="aperture w-[50px] bg-[#ECE4FF] p-2 rounded-full mr-2">
-                        <img src="./assets/Aperture.png" alt="">
+        <section class="issue-container shadow-md">
+            <div class="issues-bar bg-white p-6 rounded-lg my-4">
+                <div class="issues-bar-container flex gap-2 justify-between">
+                    <div class="start items-center flex">
+                        <div class="aperture w-[50px] bg-[#ECE4FF] p-2 rounded-full mr-2">
+                            <img src="./assets/Aperture.png" alt="">
+                        </div>
+                        <div class="issue-counter">
+                            <h2 class="text-[#1F2937] text-xl font-bold"><span id="total-issues">50</span> Issues</h2>
+                            <p class="text-[#64748B]">Track and manage your project issues</p>
+                        </div>
                     </div>
-                    <div class="issue-counter">
-                        <h2 class="text-[#1F2937] text-xl font-bold"><span id="total-issues">50</span> Issues</h2>
-                        <p class="text-[#64748B]">Track and manage your project issues</p>
-                    </div>
-                </div>
-                <div class="end items-center flex gap-4">
-                    <div class="open-status flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-green-800 mr-1"></span>
-                        <p>Open</p>
-                    </div>
-                    <div class="closed-status flex items-center">
-                        <span class="w-3 h-3 rounded-full bg-purple-800 mr-1"></span>
-                        <p>Closed</p>
+                    <div class="end items-center flex gap-4">
+                        <div class="open-status flex items-center">
+                            <span class="w-3 h-3 rounded-full bg-green-800 mr-1"></span>
+                            <p>Open</p>
+                        </div>
+                        <div class="closed-status flex items-center">
+                            <span class="w-3 h-3 rounded-full bg-purple-800 mr-1"></span>
+                            <p>Closed</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section id="issues-card-container" class="">
-            <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
-                <div class="status-priority p-4 flex justify-between">
-                    <div class="open-status">
-                        <img src="./assets/Open-Status.png" alt="">
+            <div id="issues-card-container" class="p-6">
+                <div class="issue-cards grid grid-cols-4 gap-3">
+                    <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
+                        <div class="status-priority p-4 flex justify-between">
+                            <div class="open-status">
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div class="closed-status hidden">
+                                <img src="./assets/Closed- Status .png" alt="">
+                            </div>
+
+                            <span id="priority-status"
+                                class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
+                        </div>
+                        <div class="title-desc p-4">
+                            <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on
+                                mobile devices</h2>
+                            <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse
+                                properly on mobile devices...</p>
+                        </div>
+                        <div class="labels p-4">
+                            <span id="issue-label-bug"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-bug"></i> Bug</span>
+                            <span id="issue-label-help"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-life-ring"></i> Help Wanted</span>
+                        </div>
+                        <div class="author-info-box border-t border-t-[#E4E4E7]">
+                            <div class="autho-info p-4">
+                                <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span
+                                        id="author-name">john_doe</span></p>
+                                <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="closed-status hidden">
-                        <img src="./assets/Closed- Status .png" alt="">
+                    <!-- extra cards start to test grid layout -->
+                     <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
+                        <div class="status-priority p-4 flex justify-between">
+                            <div class="open-status">
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div class="closed-status hidden">
+                                <img src="./assets/Closed- Status .png" alt="">
+                            </div>
+
+                            <span id="priority-status"
+                                class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
+                        </div>
+                        <div class="title-desc p-4">
+                            <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on
+                                mobile devices</h2>
+                            <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse
+                                properly on mobile devices...</p>
+                        </div>
+                        <div class="labels p-4">
+                            <span id="issue-label-bug"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-bug"></i> Bug</span>
+                            <span id="issue-label-help"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-life-ring"></i> Help Wanted</span>
+                        </div>
+                        <div class="author-info-box border-t border-t-[#E4E4E7]">
+                            <div class="autho-info p-4">
+                                <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span
+                                        id="author-name">john_doe</span></p>
+                                <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <span id="priority-status" class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
-                </div>
-                <div class="title-desc p-4">
-                    <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on mobile devices</h2>
-                    <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse properly on mobile devices...</p>
-                </div>
-                <div class="labels p-4">
-                    <span id="issue-label-bug" class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i class="fa-solid fa-bug"></i> Bug</span>
-                    <span id="issue-label-help" class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i class="fa-solid fa-life-ring"></i> Help Wanted</span>
-                </div>
-                <div class="author-info-box border-t border-t-[#E4E4E7]">
-                    <div class="autho-info p-4">
-                        <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span id="author-name">john_doe</span></p>
-                        <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                     <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
+                        <div class="status-priority p-4 flex justify-between">
+                            <div class="open-status">
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div class="closed-status hidden">
+                                <img src="./assets/Closed- Status .png" alt="">
+                            </div>
+
+                            <span id="priority-status"
+                                class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
+                        </div>
+                        <div class="title-desc p-4">
+                            <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on
+                                mobile devices</h2>
+                            <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse
+                                properly on mobile devices...</p>
+                        </div>
+                        <div class="labels p-4">
+                            <span id="issue-label-bug"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-bug"></i> Bug</span>
+                            <span id="issue-label-help"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-life-ring"></i> Help Wanted</span>
+                        </div>
+                        <div class="author-info-box border-t border-t-[#E4E4E7]">
+                            <div class="autho-info p-4">
+                                <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span
+                                        id="author-name">john_doe</span></p>
+                                <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                            </div>
+                        </div>
                     </div>
+                     <div class="issue-card space-y-2 bg-white drop-shadow-md rounded-md">
+                        <div class="status-priority p-4 flex justify-between">
+                            <div class="open-status">
+                                <img src="./assets/Open-Status.png" alt="">
+                            </div>
+                            <div class="closed-status hidden">
+                                <img src="./assets/Closed- Status .png" alt="">
+                            </div>
+
+                            <span id="priority-status"
+                                class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">High</span>
+                        </div>
+                        <div class="title-desc p-4">
+                            <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">Fix navigation menu on
+                                mobile devices</h2>
+                            <p id="issue-desc" class="text-xs text-[#64748B]">The navigation menu doesn't collapse
+                                properly on mobile devices...</p>
+                        </div>
+                        <div class="labels p-4">
+                            <span id="issue-label-bug"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-bug"></i> Bug</span>
+                            <span id="issue-label-help"
+                                class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i
+                                    class="fa-solid fa-life-ring"></i> Help Wanted</span>
+                        </div>
+                        <div class="author-info-box border-t border-t-[#E4E4E7]">
+                            <div class="autho-info p-4">
+                                <p class="text-[#64748B] text-xs">#<span id="author-id">1</span>by <span
+                                        id="author-name">john_doe</span></p>
+                                <p class="date text-[#64748B] text-xs">1/15/2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- extra cards end to test grid layout -->
                 </div>
             </div>
         </section>
 
+
     </main>
- <script src="./scripts/issues.js"></script>
+    <script src="./scripts/issues.js"></script>
 </body>
 
 </html>
