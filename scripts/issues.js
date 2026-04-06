@@ -5,8 +5,12 @@ const loadIssues = async () => {
     displayIssues(issuesJson.data);
     // console.log(issuesJson.data);
     // console.log("Total Issues", issuesJson.data.length);
+    const totalIssuesElm = document.getElementById("total-issues");
+    totalIssuesElm.innerText = issuesJson.data.length;
 }
 loadIssues();
+
+
 
 const displayIssues = (issues) => {
     // console.log(issues);
