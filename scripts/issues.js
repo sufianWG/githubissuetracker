@@ -16,6 +16,7 @@ const displayIssues = (issues) => {
         // console.log(issue.id);
         // console.log(issue.title);
         let issueCard = document.createElement("div");
+        const dateFormat = new Date (issue.createdAt).toLocaleDateString("en-US");
         issueCard.classList.add("space-y-0.5", "bg-white", "drop-shadow-md", "rounded-md");
         issueCard.innerHTML = `
             <div class="status-priority p-4 flex justify-between">
@@ -45,7 +46,7 @@ const displayIssues = (issues) => {
                             <div class="autho-info p-4">
                                 <p class="text-[#64748B] text-xs">#<span id="author-id">${issue.id} </span>by <span
                                         id="author-name">${issue.author}</span></p>
-                                <p class="date text-[#64748B] text-xs">${issue.createdAt}</p>
+                                <p class="date text-[#64748B] text-xs">${dateFormat}</p>
                             </div>
                         </div>
         `
