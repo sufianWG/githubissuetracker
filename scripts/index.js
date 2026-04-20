@@ -8,7 +8,7 @@ loginBtn.addEventListener("click", () => {
     const loginUserPassValue = loginUserPassword.value;
     if(loginUserNameValue == "admin" && loginUserPassValue == "admin123"){
         // alert("inputed credentials correct");
-        window.location.assign("issues.html");
+        window.location.replace("issues.html");
     }else{
         alert("username or password is not valid");
     }

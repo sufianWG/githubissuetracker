@@ -10,25 +10,80 @@ const loadIssues = async () => {
 }
 loadIssues();
 
+const getLabelClass = (label) => {
+    switch (label) {
+        case "enhancement":
+            return "bg-[#DEFCE8]] text-[#00A96E] border border-[#BBF7D0]";
+        case "bug":
+            return "bg-[#FEECEC] text-[#EF4444] border border-[#FECACA]";
+        case "help wanted":
+            return "bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A]";
+        case "good first issue":
+            return "bg-[#E0F2FE] text-[#0284C7] border border-[#BAE6FD]";
+        case "documentation":
+            return "bg-[#F3E8FF] text-[#7C3AED] border border-[#DDD6FE]";
+        default:
+            return "bg-gray-100 text-gray-600";
+    }
+}
+const getLabelIcon = (label) => {
+    switch (label) {
+        case "enhancement":
+            return "fa-solid fa-arrow-up-right-dots";
+        case "bug":
+            return "fa-solid fa-bug";
+        case "help wanted":
+            return "fa-solid fa-life-ring";
+        case "good first issue":
+            return "fa-solid fa-thumbs-up";
+        case "documentation":
+            return "fa-brands fa-readme";
+        case "undefined":
+            return "";
+        default:
+            return "";
+    }
+}
+
+const getStatusIcon = (statustext) => {
+    switch (statustext) {
+        case "open": 
+            return `<img src="./assets/Open-Status.png" alt="">`;
+        case "closed": 
+            return `<img src="./assets/Closed-Status.png" alt="">`;
+        default:
+            return "";
+    }
+}
+
+
 
 
 const displayIssues = (issues) => {
     // console.log(issues);
     // console.log("Total Issues", issues.length);
     const issueContainerParent = document.getElementById("issues-card-container");
+
     issues.forEach(issue => {
         // console.log(issue.id);
         // console.log(issue.title);
         let issueCard = document.createElement("div");
-        const dateFormat = new Date (issue.createdAt).toLocaleDateString("en-US");
-        issueCard.classList.add("space-y-0.5", "bg-white", "drop-shadow-md", "rounded-md");
+        const dateFormat = new Date(issue.createdAt).toLocaleDateString("en-US");
+        issueCard.classList.add("space-y-[2px]", "bg-white", "drop-shadow-md", "rounded-md");
+        const labelsHtml = issue.labels
+            .filter(label => label && label !== "undefined")
+            .map(label => {
+                return `
+            <span id="issue-label"
+                                class="w-20 items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
+                                    class="${getLabelIcon(label)}"></i> ${label}
+                                    </span>
+        `;
+            }).join("");
         issueCard.innerHTML = `
             <div class="status-priority p-4 flex justify-between">
-                            <div class="open-status">
-                                <img src="./assets/Open-Status.png" alt="">
-                            </div>
-                            <div class="closed-status hidden">
-                                <img src="./assets/Closed- Status .png" alt="">
+                            <div class="issue-status">
+                                ${getStatusIcon(issue.status)}
                             </div>
 
                             <span id="priority-status"
@@ -38,13 +93,8 @@ const displayIssues = (issues) => {
                             <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">${issue.title}</h2>
                             <p id="issue-desc" class="text-xs text-[#64748B] mt-2">${issue.description}</p>
                         </div>
-                        <div class="labels p-4">
-                            <span id="issue-label-bug"
-                                class="w-20 items-center text-xs font-medium text-center bg-[#FEECEC] text-[#EF4444] border border-[#FECACA] p-1.5 rounded-full uppercase"><i
-                                    class="fa-solid fa-bug"></i> ${issue.labels[0]}</span>
-                            <span id="issue-label-help"
-                                class="w-20 items-center text-xs font-medium text-center bg-[#FFF8DB] text-[#D97706] border border-[#FDE68A] p-1.5 rounded-full uppercase"><i
-                                    class="fa-solid fa-life-ring"></i> ${issue.labels[1]}</span>
+                        <div class="labels p-4 flex flex-wrap gap-1">
+                            ${labelsHtml}
                         </div>
                         <div class="author-info-box border-t border-t-[#E4E4E7]">
                             <div class="autho-info p-4">
@@ -56,7 +106,7 @@ const displayIssues = (issues) => {
         `
         // issueContainerParent.innerHTML = `
         // <div class="issue-card space-y-0.5 bg-white drop-shadow-md rounded-md">
-                        
+
         //             </div>
         // `
         issueContainerParent.append(issueCard);
