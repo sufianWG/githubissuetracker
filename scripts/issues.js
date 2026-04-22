@@ -47,10 +47,23 @@ const getLabelIcon = (label) => {
 
 const getStatusIcon = (statustext) => {
     switch (statustext) {
-        case "open": 
+        case "open":
             return `<img src="./assets/Open-Status.png" alt="">`;
-        case "closed": 
+        case "closed":
             return `<img src="./assets/Closed-Status.png" alt="">`;
+        default:
+            return "";
+    }
+}
+
+const getPriorityBg = (priority) => {
+    switch (priority) {
+        case "low":
+            return `bg-[#EEEFF2] text-[#9CA3AF]`;
+        case "medium":
+            return `bg-[#FFF6D1] text-[#F59E0B]`;
+        case "high":
+            return `bg-[#FEECEC] text-[#EF4444]`;
         default:
             return "";
     }
@@ -58,18 +71,23 @@ const getStatusIcon = (statustext) => {
 
 
 
-
 const displayIssues = (issues) => {
     // console.log(issues);
     // console.log("Total Issues", issues.length);
     const issueContainerParent = document.getElementById("issues-card-container");
-
+    issueContainerParent.innerHTML = "";
     issues.forEach(issue => {
         // console.log(issue.id);
         // console.log(issue.title);
         let issueCard = document.createElement("div");
         const dateFormat = new Date(issue.createdAt).toLocaleDateString("en-US");
-        issueCard.classList.add("space-y-[2px]", "bg-white", "drop-shadow-md", "rounded-md");
+        issueCard.classList.add("space-y-1.5", "bg-white", "drop-shadow-md", "rounded-md", "border-t-3");
+        let issueStatus = `${issue.status}`;
+        if(issueStatus == "open"){
+            issueCard.classList.add("border-[#00A96E]");
+        }else{
+            issueCard.classList.add("border-[#A855F7]");
+        }
         const labelsHtml = issue.labels
             .filter(label => label && label !== "undefined")
             .map(label => {
@@ -87,17 +105,17 @@ const displayIssues = (issues) => {
                             </div>
 
                             <span id="priority-status"
-                                class="w-20 items-center text-center text-xs font-medium bg-[#FEECEC] text-[#EF4444] p-1.5 rounded-full uppercase">${issue.priority}</span>
+                                class="w-20 items-center text-center text-xs font-medium ${getPriorityBg(issue.priority)} p-1.5 rounded-full uppercase">${issue.priority}</span>
                         </div>
-                        <div class="title-desc p-4">
+                        <div class="title-desc px-4">
                             <h2 id="issue-title" class="text-sm font-semibold text-[#1F2937]">${issue.title}</h2>
                             <p id="issue-desc" class="text-xs text-[#64748B] mt-2">${issue.description}</p>
                         </div>
-                        <div class="labels p-4 flex flex-wrap gap-1">
+                        <div class="labels px-4 flex flex-wrap gap-1">
                             ${labelsHtml}
                         </div>
                         <div class="author-info-box border-t border-t-[#E4E4E7]">
-                            <div class="autho-info p-4">
+                            <div class="autho-info px-4">
                                 <p class="text-[#64748B] text-xs">#<span id="author-id">${issue.id} </span>by <span
                                         id="author-name">${issue.author}</span></p>
                                 <p class="date text-[#64748B] text-xs">${dateFormat}</p>
