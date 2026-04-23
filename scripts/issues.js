@@ -136,12 +136,14 @@ const displayIssues = (issues) => {
         issueContainerParent.append(issueCard);
     });
     totalIssuesElm.innerText = motIssue;
+    spinner(false);
 }
 // all-btn click korleo jeno sob issue dekhay
 const allBtn = document.getElementById("all-btn");
 allBtn.addEventListener("click", () => {
-    toogle("all-btn");
+    toggle("all-btn");
     const loadIssues = async () => {
+        spinner(true);
         const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
         const res = await fetch(allIssuesUrl);
         const issuesJson = await res.json();
@@ -156,10 +158,11 @@ allBtn.addEventListener("click", () => {
 // ekhon sudhu "open" status er issue gulo show koracchi
 const openBtn = document.getElementById("open-btn");
 openBtn.addEventListener("click", () => {
-    toogle("open-btn");
+    toggle("open-btn");
     // console.log("clicked on open button");
     // load issues again for to filter open status issues
     const loadIssues = async () => {
+        spinner(true);
         const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
         const res = await fetch(allIssuesUrl);
         const issuesJson = await res.json();
@@ -177,10 +180,11 @@ openBtn.addEventListener("click", () => {
 // ekhon sudhu "open" status er issue gulo show koracchi
 const closeBtn = document.getElementById("closed-btn");
 closeBtn.addEventListener("click", () => {
-    toogle("closed-btn");
+    toggle("closed-btn");
     // console.log("clicked on open button");
     // load issues again for to filter open status issues
     const loadIssues = async () => {
+        spinner(true);
         const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
         const res = await fetch(allIssuesUrl);
         const issuesJson = await res.json();
@@ -196,7 +200,7 @@ closeBtn.addEventListener("click", () => {
 })
 
 // toogling handle korar jonno 
-const toogle = (id) =>  {
+const toggle = (id) =>  {
     document.getElementById("all-btn").classList.remove("bg-[#4A00FF]", "text-white");
     document.getElementById("all-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
     document.getElementById("open-btn").classList.remove("bg-[#4A00FF]", "text-white");
@@ -209,4 +213,14 @@ const toogle = (id) =>  {
     document.getElementById(id).classList.add("bg-[#4A00FF]", "text-white");
     document.getElementById(id).classList.remove("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
 
+}
+
+// spinner dekhanor funciton
+const spinner = (obostha) => {
+    const spinnerDiv = document.querySelector(".spinner-loading");
+    if(obostha == true) {
+        spinnerDiv.classList.remove('hidden');
+    }else{
+        spinnerDiv.classList.add('hidden');
+    }
 }
