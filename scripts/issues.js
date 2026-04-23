@@ -87,6 +87,7 @@ const displayIssues = (issues) => {
         let issueCard = document.createElement("div");
         const dateFormat = new Date(issue.createdAt).toLocaleDateString("en-US");
         issueCard.classList.add("space-y-1.5", "bg-white", "drop-shadow-md", "rounded-md", "border-t-3");
+        issueCard.setAttribute("onclick", `singleIssueData(${issue.id}), my_modal_5.showModal()`)
         let issueStatus = `${issue.status}`;
         if (issueStatus == "open") {
             issueCard.classList.add("border-[#00A96E]");
@@ -97,7 +98,7 @@ const displayIssues = (issues) => {
             .filter(label => label && label !== "undefined")
             .map(label => {
                 return `
-            <span class="w-20 items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
+            <span class="items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
                                     class="${getLabelIcon(label)}"></i> ${label}
                                     </span>
         `;
@@ -200,7 +201,7 @@ closeBtn.addEventListener("click", () => {
 })
 
 // toogling handle korar jonno 
-const toggle = (id) =>  {
+const toggle = (id) => {
     document.getElementById("all-btn").classList.remove("bg-[#4A00FF]", "text-white");
     document.getElementById("all-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
     document.getElementById("open-btn").classList.remove("bg-[#4A00FF]", "text-white");
@@ -208,7 +209,7 @@ const toggle = (id) =>  {
     document.getElementById("closed-btn").classList.remove("bg-[#4A00FF]", "text-white");
     document.getElementById("closed-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
 
-    
+
     // ekhon conditionally button color change korrar jonno
     document.getElementById(id).classList.add("bg-[#4A00FF]", "text-white");
     document.getElementById(id).classList.remove("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
@@ -218,9 +219,71 @@ const toggle = (id) =>  {
 // spinner dekhanor funciton
 const spinner = (obostha) => {
     const spinnerDiv = document.querySelector(".spinner-loading");
-    if(obostha == true) {
+    if (obostha == true) {
         spinnerDiv.classList.remove('hidden');
-    }else{
+    } else {
         spinnerDiv.classList.add('hidden');
     }
 }
+
+// modal er data collect korar jonno function
+const singleIssueData = async (issueId) => {
+    spinner(true);
+    const urlSingIssue = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`
+    const res = await fetch(urlSingIssue);
+    const issuesJson = await res.json();
+    let detailsData = issuesJson.data;
+    singleDatainModal(detailsData);
+    // console.log(allIssues);
+}
+//  singleIssueData(5);
+
+// ebar single issue er data modal er vitore render korchi:
+const singleDatainModal = (singleIssueDtls) => {
+    // console.log(singleIssueDtls);
+    const dateFormatForDtls = new Date(singleIssueDtls.createdAt).toLocaleDateString("en-US");
+    const modalDiv = document.getElementById("my_modal_5");
+    modalDiv.innerHTML = "";
+    const labelsHtmlS = singleIssueDtls.labels
+            .filter(label => label && label !== "undefined")
+            .map(label => {
+                return `
+            <span class="items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
+                                    class="${getLabelIcon(label)}"></i> ${label}
+                                    </span>
+        `;
+            }).join("");
+    modalDiv.innerHTML = `
+            <div class="modal-box p-8">
+                    <h3 class="text-lg font-bold">${singleIssueDtls.title}</h3>
+                    <div class="stauthdate">
+                        <h3 class="text-xs mt-2"><span id="detls-status" class="w-20 items-center text-center p-1 rounded-full text-white ${singleIssueDtls.status == 'open'? 'bg-green-600':'bg-[#A855F7]'}">${singleIssueDtls.status == 'open'? 'Opened':'Closed'}</span> 
+                        <span class="dot"> • </span><span id="dtls-status">${singleIssueDtls.status == 'open'? 'Opened':'Closed'}</span> by <span id="dtls-auth">${singleIssueDtls.author}</span> 
+                        <span class="dot"> • </span> <span id="dtls-date">${dateFormatForDtls}</span> </h3>
+                    </div>
+                    <div class="issue-labels">
+                        <span class="labels mt-4 flex flex-wrap gap-1">${labelsHtmlS}</span>
+                        
+                    </div>
+                    <p class="py-4">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+                    <div class="assigne-info bg-[#F8FAFC] flex justify-start gap-32 p-4 rounded-b-lg">
+                        <div class="left-side">
+                            <span>Assignee:</span> <br>
+                            <span class="font-bold">${singleIssueDtls.assignee}</span>
+                        </div>
+                        <div class="right-side">
+                             <span>Priority:</span> <br>
+                            <span class="w-20 items-center text-center text-xs font-medium ${getPriorityBg(singleIssueDtls.priority)} p-1.5 rounded-full uppercase">${singleIssueDtls.priority}</span>
+                        </div>
+                    </div>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn bg-[#4A00FF] text-base font-semibold py-3 px-4 rounded-sm text-white">Close</button>
+                        </form>
+                    </div>
+            </div>
+    
+    `
+}
+
