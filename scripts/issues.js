@@ -287,3 +287,25 @@ const singleDatainModal = (singleIssueDtls) => {
     `
 }
 
+// ekhon search box functinal korchi:
+const searchBox = document.getElementById("search-box");
+
+searchBox.addEventListener("input", (e) => {
+    
+    const inputtedValue = e.target.value.toLowerCase().trim();
+    // console.log(inputtedValue);
+    if(inputtedValue === ""){
+        spinner(true);
+        loadAllIssues();
+        return;
+    }
+    const loadTargetIssues = async () => {
+        spinner(true);
+        const searchIssuesUrl = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${inputtedValue}`;
+        const res = await fetch(searchIssuesUrl);
+        const issuesJson = await res.json();
+        let targetIssues = issuesJson.data;
+        displayIssues(targetIssues);
+    }
+    loadTargetIssues();
+})
