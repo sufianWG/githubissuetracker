@@ -1,19 +1,22 @@
-const loadIssues = async () => {
+const totalIssuesElm = document.getElementById("total-issues");
+
+const loadAllIssues = async () => {
     const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res = await fetch(allIssuesUrl);
     const issuesJson = await res.json();
     displayIssues(issuesJson.data);
     // console.log(issuesJson.data);
     // console.log("Total Issues", issuesJson.data.length);
-    const totalIssuesElm = document.getElementById("total-issues");
     totalIssuesElm.innerText = issuesJson.data.length;
 }
-loadIssues();
+loadAllIssues();
+
+
 
 const getLabelClass = (label) => {
     switch (label) {
         case "enhancement":
-            return "bg-[#DEFCE8]] text-[#00A96E] border border-[#BBF7D0]";
+            return "bg-[#DEFCE8] text-[#00A96E] border border-[#BBF7D0]";
         case "bug":
             return "bg-[#FEECEC] text-[#EF4444] border border-[#FECACA]";
         case "help wanted":
@@ -69,31 +72,32 @@ const getPriorityBg = (priority) => {
     }
 }
 
-
-
 const displayIssues = (issues) => {
     // console.log(issues);
     // console.log("Total Issues", issues.length);
     const issueContainerParent = document.getElementById("issues-card-container");
     issueContainerParent.innerHTML = "";
+    // totalIssuesElm.innerText
+    let motIssue = 0;
+
     issues.forEach(issue => {
         // console.log(issue.id);
         // console.log(issue.title);
+        motIssue++
         let issueCard = document.createElement("div");
         const dateFormat = new Date(issue.createdAt).toLocaleDateString("en-US");
         issueCard.classList.add("space-y-1.5", "bg-white", "drop-shadow-md", "rounded-md", "border-t-3");
         let issueStatus = `${issue.status}`;
-        if(issueStatus == "open"){
+        if (issueStatus == "open") {
             issueCard.classList.add("border-[#00A96E]");
-        }else{
+        } else {
             issueCard.classList.add("border-[#A855F7]");
         }
         const labelsHtml = issue.labels
             .filter(label => label && label !== "undefined")
             .map(label => {
                 return `
-            <span id="issue-label"
-                                class="w-20 items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
+            <span class="w-20 items-center text-xs font-medium whitespace-nowrap w-fit text-center p-1.5 rounded-full uppercase ${getLabelClass(label)}"><i
                                     class="${getLabelIcon(label)}"></i> ${label}
                                     </span>
         `;
@@ -127,7 +131,64 @@ const displayIssues = (issues) => {
 
         //             </div>
         // `
+
+
         issueContainerParent.append(issueCard);
     });
+    totalIssuesElm.innerText = motIssue;
+}
+// all-btn click korleo jeno sob issue dekhay
+const allBtn = document.getElementById("all-btn");
+allBtn.addEventListener("click", () => {
+    const loadIssues = async () => {
+        const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+        const res = await fetch(allIssuesUrl);
+        const issuesJson = await res.json();
+        displayIssues(issuesJson.data);
+        // console.log(issuesJson.data);
+        // console.log("Total Issues", issuesJson.data.length);
+        // totalIssuesElm.innerText = issuesJson.data.length;
+    }
+    loadIssues();
+})
 
-}   
+// ekhon sudhu "open" status er issue gulo show koracchi
+const openBtn = document.getElementById("open-btn");
+openBtn.addEventListener("click", () => {
+    // console.log("clicked on open button");
+    // load issues again for to filter open status issues
+    const loadIssues = async () => {
+        const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+        const res = await fetch(allIssuesUrl);
+        const issuesJson = await res.json();
+        let allIssues = issuesJson.data;
+        // console.log(allIssues);
+        // console.log(issuesJson.data);
+        // console.log("Total Issues", issuesJson.data.length);
+        const filterOpenIssue = allIssues.filter(issue => issue.status == "open");
+        // console.log(filterOpenIssue);
+        displayIssues(filterOpenIssue);
+    }
+    loadIssues();
+})
+
+// ekhon sudhu "open" status er issue gulo show koracchi
+const closeBtn = document.getElementById("closed-btn");
+closeBtn.addEventListener("click", () => {
+    // console.log("clicked on open button");
+    // load issues again for to filter open status issues
+    const loadIssues = async () => {
+        const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+        const res = await fetch(allIssuesUrl);
+        const issuesJson = await res.json();
+        let allIssues = issuesJson.data;
+        // console.log(allIssues);
+        // console.log(issuesJson.data);
+        // console.log("Total Issues", issuesJson.data.length);
+        const filterClosedIssue = allIssues.filter(issue => issue.status == "closed");
+        // console.log(filterOpenIssue);
+        displayIssues(filterClosedIssue);
+    }
+    loadIssues();
+})
+
