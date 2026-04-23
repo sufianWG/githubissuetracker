@@ -140,6 +140,7 @@ const displayIssues = (issues) => {
 // all-btn click korleo jeno sob issue dekhay
 const allBtn = document.getElementById("all-btn");
 allBtn.addEventListener("click", () => {
+    toogle("all-btn");
     const loadIssues = async () => {
         const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
         const res = await fetch(allIssuesUrl);
@@ -155,6 +156,7 @@ allBtn.addEventListener("click", () => {
 // ekhon sudhu "open" status er issue gulo show koracchi
 const openBtn = document.getElementById("open-btn");
 openBtn.addEventListener("click", () => {
+    toogle("open-btn");
     // console.log("clicked on open button");
     // load issues again for to filter open status issues
     const loadIssues = async () => {
@@ -175,6 +177,7 @@ openBtn.addEventListener("click", () => {
 // ekhon sudhu "open" status er issue gulo show koracchi
 const closeBtn = document.getElementById("closed-btn");
 closeBtn.addEventListener("click", () => {
+    toogle("closed-btn");
     // console.log("clicked on open button");
     // load issues again for to filter open status issues
     const loadIssues = async () => {
@@ -192,3 +195,18 @@ closeBtn.addEventListener("click", () => {
     loadIssues();
 })
 
+// toogling handle korar jonno 
+const toogle = (id) =>  {
+    document.getElementById("all-btn").classList.remove("bg-[#4A00FF]", "text-white");
+    document.getElementById("all-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
+    document.getElementById("open-btn").classList.remove("bg-[#4A00FF]", "text-white");
+    document.getElementById("open-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
+    document.getElementById("closed-btn").classList.remove("bg-[#4A00FF]", "text-white");
+    document.getElementById("closed-btn").classList.add("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
+
+    
+    // ekhon conditionally button color change korrar jonno
+    document.getElementById(id).classList.add("bg-[#4A00FF]", "text-white");
+    document.getElementById(id).classList.remove("bg-white", "text-[#64748B]", "outline-1", "outline-[#E4E4E7]");
+
+}
