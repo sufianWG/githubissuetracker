@@ -1,6 +1,7 @@
 const totalIssuesElm = document.getElementById("total-issues");
 
 const loadAllIssues = async () => {
+    
     const allIssuesUrl = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
     const res = await fetch(allIssuesUrl);
     const issuesJson = await res.json();
@@ -10,6 +11,7 @@ const loadAllIssues = async () => {
     totalIssuesElm.innerText = issuesJson.data.length;
 }
 loadAllIssues();
+
 
 
 
@@ -137,7 +139,15 @@ const displayIssues = (issues) => {
         issueContainerParent.append(issueCard);
     });
     totalIssuesElm.innerText = motIssue;
-    spinner(false);
+    const notFoundSection = document.getElementById("not-found");
+    if(motIssue == 0){
+        notFoundSection.classList.remove("hidden");
+        issueContainerParent.classList.add("hidden");
+    }else{
+        notFoundSection.classList.add("hidden");
+        issueContainerParent.classList.remove("hidden");
+    }
+    spinner(false); 
 }
 // all-btn click korleo jeno sob issue dekhay
 const allBtn = document.getElementById("all-btn");
@@ -266,7 +276,7 @@ const singleDatainModal = (singleIssueDtls) => {
                         
                     </div>
                     <p class="py-4">The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
-                    <div class="assigne-info bg-[#F8FAFC] flex justify-start gap-32 p-4 rounded-b-lg">
+                    <div class="assigne-info bg-[#F8FAFC] flex justify-start gap-32 p-4 rounded-lg">
                         <div class="left-side">
                             <span>Assignee:</span> <br>
                             <span class="font-bold">${singleIssueDtls.assignee}</span>
@@ -285,6 +295,7 @@ const singleDatainModal = (singleIssueDtls) => {
             </div>
     
     `
+    spinner(false);
 }
 
 // ekhon search box functinal korchi:

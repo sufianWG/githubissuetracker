@@ -45,7 +45,7 @@
             </div>
         </div>
     </nav>
-    <main class="my-15 max-w-10/12 mx-auto">
+    <main class="my-15 max-w-11/12 md:max-w-10/12 mx-auto">
         <section class="toogle-bar bg-white p-6 rounded-lg shadow">
             <div class="toogle-bar-container flex gap-2">
                 <button id="all-btn"
@@ -59,7 +59,7 @@
         </section>
         <section class="issue-container shadow-lg">
             <div class="issues-bar bg-white p-6 rounded-t-lg my-4 shadow">
-                <div class="issues-bar-container flex gap-2 justify-between">
+                <div class="issues-bar-container block md:flex gap-2 justify-between">
                     <div class="start items-center flex">
                         <div class="aperture w-[50px] bg-[#ECE4FF] p-2 rounded-full mr-2">
                             <img src="./assets/Aperture.png" alt="">
@@ -81,8 +81,13 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6">
-                <div id="issues-card-container" class="issue-cards grid grid-cols-4 gap-3">
+            <div class="p-4 md:p-6">
+                <div id="not-found" class="hidden">
+                    <div class="not-found-container text-center">
+                        <span class="text-6xl text-gray-600">No issues found.</span>
+                    </div>
+                </div>
+                <div id="issues-card-container" class="issue-cards grid grid-cols-1 md:grid-cols-4 gap-3">
 
                     <!-- ekhane issue card gulo render hobe -->
                 </div>
@@ -95,12 +100,13 @@
 
         <section class="dtls-modal">
             <!-- Open the modal using ID.showModal() method -->
-            
+
             <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
                 <!-- ekhane render hobe amr js theke single issue er content -->
-                 
+
             </dialog>
         </section>
+
 
     </main>
     <script src="./scripts/issues.js"></script>
